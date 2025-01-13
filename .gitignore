@@ -4,3 +4,6 @@
 # React Router
 /.react-router/
 /build/
+localhost.pem
+localhost-key.pem
+.env

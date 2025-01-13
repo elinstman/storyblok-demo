@@ -3,12 +3,48 @@ import {
   Links,
   Meta,
   Outlet,
+  RouterProvider,
   Scripts,
   ScrollRestoration,
-} from "react-router";
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route as RouteComponent
+} from "react-router-dom";
+import { useEffect, useState } from "react";
+import { flatRoutes } from "@react-router/fs-routes";
 
+import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
+import { StoryblokCMS } from "./utils/cms";
+import type { ReactNode } from "react";
+import { StoryblokProvider as CustomStoryblokProvider } from "./components/storyblokProvider";
+import Page from "./routes/$slug";
+import Teaser from "./components/Teaser";
+import routes from "./routes";
+import type { RouteConfigEntry } from "@react-router/dev/routes";
+
+const components = {
+  page: Page,
+  teaser: Teaser,
+}
+
+storyblokInit({
+  accessToken: "AINhSPX7irFQVFrjyhGXFAtt",
+  use: [apiPlugin],
+  components,
+})
+
+console.log("storyblokinit ok", storyblokInit);
+console.log("apiplugin: ", apiPlugin);
+
+export function StoryblokProvider({ children }: { children: ReactNode }) {
+    return (
+      children
+    );
+  }
+
+
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -43,7 +79,41 @@ export function Layout({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  return <Outlet />;
+  const storyblok = new StoryblokCMS();
+  const [ routes, setRoutes] = useState<null | RouteConfigEntry[]>(null);
+  
+  useEffect(() => {
+    const fetchRoutes = async () => {
+      const loadedRoutes = await flatRoutes();
+      setRoutes(loadedRoutes);
+    };
+
+    fetchRoutes();
+  }, []);
+
+  if (!routes) {
+    return <div>Loading...</div>;
+  }
+
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <RouteComponent path="/" element={<Layout><Outlet /></Layout>}>
+        {routes.map((route) => (
+          <RouteComponent
+            key={route.path}
+            path={route.path}
+            index={route.index}
+          />
+        ))}
+      </RouteComponent>
+    )
+  );
+  
+  return (
+    <CustomStoryblokProvider storyblok={storyblok}>
+      <RouterProvider router={router} />
+    </CustomStoryblokProvider>
+  );
 }
 
 export function ErrorBoundary({ error }: Route.ErrorBoundaryProps) {
