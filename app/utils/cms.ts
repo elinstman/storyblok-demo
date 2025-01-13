@@ -17,8 +17,6 @@ export class StoryblokCMS {
     static TOKEN: string = "AINhSPX7irFQVFrjyhGXFAtt";
 
     static async sbGet(path: string, params?: Record<string, any>): Promise<any> {
-        console.log("path in sbGet", path);
-        console.log("params in sbGet", params);
         return getStoryblokApi().get(path, params);
       }
 
@@ -32,7 +30,6 @@ export class StoryblokCMS {
 
     const defaultParams = this.getDefaultSBParams();  
     const { data } = await this.sbGet(storyUrl, defaultParams);
-    console.log("data i getStory", data);
     return data.story;
   }
   static getDefaultSBParams(): Record<string, any> {
@@ -54,7 +51,7 @@ export class StoryblokCMS {
   }
 
   static async generateMetaFromStory(slug: string): Promise<MetaData> {
-    // Anpassa efter dina SEO-fält
+
     return {
       title: "Title",
       description: "Description",

@@ -9,16 +9,17 @@ type PageProps = {
   };
 };
 
-export default function Page({ blok }: PageProps) {
+const Page = ({ blok }: PageProps) => {
+  console.log("blok in Page", blok);
 
-  const { story } = useLoaderData<typeof loader>();
-  console.log("story", story);
-  
   return (
-    <main {...storyblokEditable(blok)} key={blok._uid}>
-      {blok.body?.map((nestedBlok) => (
-        <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
-      ))}
-    </main>
-  );
-}
+    <main {...storyblokEditable(blok)} key={blok._uid} className="px-4">
+    {blok.body.map((nestedBlok) => (
+      <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+    ))}
+  </main>
+  )
+
+};
+
+export default Page;

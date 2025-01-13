@@ -13,7 +13,7 @@ import {
 import { useEffect, useState } from "react";
 import { flatRoutes } from "@react-router/fs-routes";
 
-import { storyblokInit, apiPlugin } from "@storyblok/react/rsc";
+import { storyblokInit, apiPlugin } from "@storyblok/react";
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
 import { StoryblokCMS } from "./utils/cms";
@@ -35,16 +35,11 @@ storyblokInit({
   components,
 })
 
-console.log("storyblokinit ok", storyblokInit);
-console.log("apiplugin: ", apiPlugin);
-
 export function StoryblokProvider({ children }: { children: ReactNode }) {
     return (
       children
     );
   }
-
-
 
 export const links: Route.LinksFunction = () => [
   { rel: "preconnect", href: "https://fonts.googleapis.com" },
@@ -80,38 +75,10 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   const storyblok = new StoryblokCMS();
-  const [ routes, setRoutes] = useState<null | RouteConfigEntry[]>(null);
-  
-  useEffect(() => {
-    const fetchRoutes = async () => {
-      const loadedRoutes = await flatRoutes();
-      setRoutes(loadedRoutes);
-    };
-
-    fetchRoutes();
-  }, []);
-
-  if (!routes) {
-    return <div>Loading...</div>;
-  }
-
-  const router = createBrowserRouter(
-    createRoutesFromElements(
-      <RouteComponent path="/" element={<Layout><Outlet /></Layout>}>
-        {routes.map((route) => (
-          <RouteComponent
-            key={route.path}
-            path={route.path}
-            index={route.index}
-          />
-        ))}
-      </RouteComponent>
-    )
-  );
   
   return (
     <CustomStoryblokProvider storyblok={storyblok}>
-      <RouterProvider router={router} />
+      <Outlet />
     </CustomStoryblokProvider>
   );
 }
