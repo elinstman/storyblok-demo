@@ -8,7 +8,7 @@ type GridProps = {
 }
 
 export default function Grid({ blok }: GridProps) {
-    console.log("blok in grid", blok);
+    
     return (
         <ul {...storyblokEditable(blok)} key={blok._uid} className="container mx-auto grid md:grid-cols-3 gap-12 my-12 place-items-center">
     {blok.columns.map((blok: any) => (

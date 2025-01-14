@@ -10,7 +10,6 @@ type PageProps = {
 };
 
 const Page = ({ blok }: PageProps) => {
-  console.log("blok in Page", blok);
 
   return (
     <main {...storyblokEditable(blok)} key={blok._uid} className="px-4">
