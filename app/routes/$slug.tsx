@@ -6,7 +6,6 @@ import {
   useStoryblokState
 } from "@storyblok/react";
 import { StoryblokCMS } from "~/utils/cms";
-import { useEffect, useState } from "react";
 
 export async function loader({ params }: { params: { slug?: string } }) {
   const slug = params.slug ?? "home"; 
@@ -27,7 +26,6 @@ export async function loader({ params }: { params: { slug?: string } }) {
 
 export default function Page() {
   const { story } = useLoaderData<{ story: ISbStoryData }>();
-  console.log("story in page", story);
   
   const liveStory = useStoryblokState(story);
   
@@ -38,7 +36,7 @@ export default function Page() {
   
   return (
     <main>
-      <h1>{liveStory.name}</h1>
+      {/* <h1>{liveStory.name}</h1> */}
       <StoryblokComponent blok={liveStory.content} />
     </main>
   );

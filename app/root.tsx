@@ -19,14 +19,18 @@ import stylesheet from "./app.css?url";
 import { StoryblokCMS } from "./utils/cms";
 import type { ReactNode } from "react";
 import { StoryblokProvider as CustomStoryblokProvider } from "./components/storyblokProvider";
-import Page from "./routes/$slug";
+import Page from "./components/Page";
 import Teaser from "./components/Teaser";
+import Grid from "./components/Grid";
+import Feature from "./components/Feature";
 import routes from "./routes";
 import type { RouteConfigEntry } from "@react-router/dev/routes";
 
 const components = {
   page: Page,
   teaser: Teaser,
+  grid: Grid,
+  feature: Feature,
 }
 
 storyblokInit({
