@@ -12,7 +12,7 @@ type PageProps = {
 const Page = ({ blok }: PageProps) => {
 
   return (
-    <main {...storyblokEditable(blok)} key={blok._uid} className="px-4">
+    <main {...storyblokEditable(blok)} key={blok._uid} >
     {blok.body.map((nestedBlok) => (
       <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
     ))}

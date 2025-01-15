@@ -42,13 +42,27 @@ export class StoryblokCMS {
 
   static async getConfig(): Promise<Record<string, any>> {
     try {
-      const { data } = await this.sbGet("cdn/stories/config", this.getDefaultSBParams());
-      return data?.story?.content || {};
+      const storyUrl = "cdn/stories/config";
+      const defaultParams = this.getDefaultSBParams();
+      const { data } = await this.sbGet(storyUrl, defaultParams);
+      console.log("CONFIG", data);
+      return data.story;  // Return the entire story object instead of just content
     } catch (error) {
       console.error("CONFIG ERROR", error);
-      return {}
+      return {};
     }
   }
+
+  // static async getConfig(): Promise<Record<string, any>> {
+  //   try {
+  //     const { data } = await this.sbGet("cdn/stories/config", this.getDefaultSBParams());
+  //     console.log("CONFIG", data);
+  //     return data?.story?.content || {};
+  //   } catch (error) {
+  //     console.error("CONFIG ERROR", error);
+  //     return {}
+  //   }
+  // }
 
   static async generateMetaFromStory(slug: string): Promise<MetaData> {
 

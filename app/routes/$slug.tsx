@@ -6,18 +6,22 @@ import {
   useStoryblokState
 } from "@storyblok/react";
 import { StoryblokCMS } from "~/utils/cms";
+import ConfigLayout from "./layout";
 
 export async function loader({ params }: { params: { slug?: string } }) {
   const slug = params.slug ?? "home"; 
 
-
   try {
-    const story = await StoryblokCMS.getStory({ slug: [slug] });
+    const [story, config] = await Promise.all([
+      StoryblokCMS.getStory({ slug: [slug] }),
+      StoryblokCMS.getConfig()
+    ]);
+
     if (!story) {
       throw new Response("Story not found", { status: 404 });
     }
     
-    return { story };
+    return { story, config };
   } catch (error) {
     console.error("Error fetching Storyblok data:", error);
     throw new Response("Failed to fetch data", { status: 500 });
@@ -25,7 +29,7 @@ export async function loader({ params }: { params: { slug?: string } }) {
 }
 
 export default function Page() {
-  const { story } = useLoaderData<{ story: ISbStoryData }>();
+  const { story, config } = useLoaderData<{ story: ISbStoryData, config: ISbStoryData }>();
   
   const liveStory = useStoryblokState(story);
   
@@ -35,9 +39,10 @@ export default function Page() {
   }
   
   return (
-    <main>
-      {/* <h1>{liveStory.name}</h1> */}
+    <ConfigLayout config={config.content}>
       <StoryblokComponent blok={liveStory.content} />
-    </main>
+    </ConfigLayout>
   );
 }
+
+

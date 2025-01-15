@@ -1,3 +1,4 @@
+import "./app.css";
 import {
   isRouteErrorResponse,
   Links,
@@ -13,6 +14,7 @@ import {
 import { useEffect, useState } from "react";
 import { flatRoutes } from "@react-router/fs-routes";
 
+
 import { storyblokInit, apiPlugin } from "@storyblok/react";
 import type { Route } from "./+types/root";
 import stylesheet from "./app.css?url";
@@ -23,14 +25,21 @@ import Page from "./components/Page";
 import Teaser from "./components/Teaser";
 import Grid from "./components/Grid";
 import Feature from "./components/Feature";
+import Header from "./components/Header";
+import Footer from "./components/Footer";
+import ConfigLayout from "./routes/layout";
 import routes from "./routes";
 import type { RouteConfigEntry } from "@react-router/dev/routes";
+
 
 const components = {
   page: Page,
   teaser: Teaser,
   grid: Grid,
   feature: Feature,
+  header: Header,
+  footer: Footer,
+  config: Layout,
 }
 
 storyblokInit({

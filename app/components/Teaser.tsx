@@ -10,8 +10,10 @@ type TeaserProps = {
 export default function Teaser({ blok }: TeaserProps) {
 
   return (
-    <div {...storyblokEditable(blok)} key={blok._uid}>
-      <h2>{blok.headline}</h2>
+    <div {...storyblokEditable(blok)} key={blok._uid} 
+    className="w-full relative overflow-hidden flex flex-col items-center justify-center"
+    >
+      <p className="text-4xl text-black font-bold mb-10">{blok.headline}</p>
     </div>
   );
 }
