@@ -27,15 +27,15 @@ export default function Footer({ blok }: FooterProps) {
     return (
         <footer className="bg-white shadow-md p-8">
             <div className="container mx-auto flex flex-col md:flex-row items-start justify-between gap-8 shadow-t-lg"> 
-                <div> 
+                <div className="pr-40"> 
                 <h1>{blok.footerTitle}</h1>
                 </div>
-                <div className="flex flex-col gap-2 relative">
+                <div className="flex flex-col gap-2 relative ml-12 mr-12">
                     <h1>{blok.formwrapper[0].formTitle}</h1>
                     <p>{blok.formwrapper[0].formDescription}</p>
                     <form className="border-2 border-gray-300 p-1">
                         {blok.formwrapper[0].forms.map((form: any) => (
-                            <input type={form.type} placeholder={form.placeholder} />
+                            <input key={form._uid} type={form.type} placeholder={form.placeholder} className="w-full focus:outline-none" />
                         ))}
                     </form>
                     <button 
