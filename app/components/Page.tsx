@@ -1,6 +1,4 @@
 import { storyblokEditable, StoryblokComponent } from "@storyblok/react";
-import { useLoaderData } from "react-router-dom";
-import { loader } from "../routes/$slug";
 
 type PageProps = {
   blok: {

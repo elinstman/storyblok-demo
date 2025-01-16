@@ -9,10 +9,10 @@ import {
   ScrollRestoration,
   createBrowserRouter,
   createRoutesFromElements,
-  Route as RouteComponent
+  Route as RouteComponent,
+  useLoaderData
 } from "react-router-dom";
-import { useEffect, useState } from "react";
-import { flatRoutes } from "@react-router/fs-routes";
+
 
 
 import { storyblokInit, apiPlugin } from "@storyblok/react";
@@ -27,9 +27,7 @@ import Grid from "./components/Grid";
 import Feature from "./components/Feature";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
-import ConfigLayout from "./routes/layout";
-import routes from "./routes";
-import type { RouteConfigEntry } from "@react-router/dev/routes";
+
 
 
 const components = {
@@ -39,7 +37,6 @@ const components = {
   feature: Feature,
   header: Header,
   footer: Footer,
-  config: Layout,
 }
 
 storyblokInit({
@@ -47,6 +44,19 @@ storyblokInit({
   use: [apiPlugin],
   components,
 })
+
+export async function loader() {
+  try {
+    const config = await StoryblokCMS.getConfig();
+    if (!config) {
+      throw new Response("Config not found", { status: 404 });
+    }
+    return { config };
+  } catch (error) {
+    console.error("Error fetching config:", error);
+    throw new Response("Failed to fetch config", { status: 500 });
+  }
+}
 
 export function StoryblokProvider({ children }: { children: ReactNode }) {
     return (
@@ -69,6 +79,8 @@ export const links: Route.LinksFunction = () => [
 ];
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const { config } = useLoaderData<typeof loader>();
+  
   return (
     <html lang="en">
       <head>
@@ -78,7 +90,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
+        <Header blok={config.content} />
         {children}
+        <Footer blok={config.content} />
         <ScrollRestoration />
         <Scripts />
       </body>

@@ -44,8 +44,8 @@ export class StoryblokCMS {
     try {
       const storyUrl = "cdn/stories/config";
       const defaultParams = this.getDefaultSBParams();
+      
       const { data } = await this.sbGet(storyUrl, defaultParams);
-      console.log("CONFIG", data);
       return data.story;  // Return the entire story object instead of just content
     } catch (error) {
       console.error("CONFIG ERROR", error);
