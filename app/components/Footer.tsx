@@ -23,7 +23,6 @@ type FooterProps = {
 }
 
 export default function Footer({ blok }: FooterProps) {
-    console.log("blok in footer", blok);
     return (
         <footer className="bg-white shadow-md p-8">
             <div className="container mx-auto flex flex-col md:flex-row items-start justify-between gap-8 shadow-t-lg"> 
