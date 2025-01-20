@@ -44,7 +44,7 @@ export default function Header({ blok }: HeaderProps) {
     };
 
     return (
-        <header className="bg-white shadow-md p-4">
+        <header className="bg-white shadow-md p-4 relative z-50">
             <div className="container mx-auto flex flex-col items-center justify-center gap-9">
                 {/* Logo section */}
                 <div className="flex items-center gap-2">
@@ -61,28 +61,31 @@ export default function Header({ blok }: HeaderProps) {
                                     key={navItem._uid}
                                     className="relative group"
                                 >
-                                    <Link 
-                                        to={navItem.link.cached_url || "#"}
-                                        className="block px-4 py-2 hover:text-grey-200 transition-colors"
-                                    >
-                                        {navItem.title}
-                                    </Link>
-                                    
-                                    {/* Dropdown menu - using group-hover instead of state */}
-                                    {navItem.nestleLinkBlock && navItem.nestleLinkBlock.length > 0 && (
-                                        <ul className="invisible group-hover:visible absolute left-0 top-full mt-2 bg-gray-100 shadow-lg rounded-md py-2 min-w-[200px] z-50">
-                                            {navItem.nestleLinkBlock.map((nestedItem) => (
-                                                <li key={nestedItem._uid}>
-                                                    <Link 
-                                                        to={nestedItem.link.cached_url || "#"}
-                                                        className="block px-4 py-2 hover:bg-gray-200 text-black transition-colors z-50"
-                                                    >
-                                                        {nestedItem.title}
-                                                    </Link>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    )}
+                                    <div className="h-full hover:text-gray-500">
+                                        <Link 
+                                            to={navItem.link.cached_url || "#"}
+                                            className="block px-4 py-2 transition-colors"
+                                        >
+                                            {navItem.title}
+                                        </Link>
+                                        
+                                        {navItem.nestleLinkBlock && navItem.nestleLinkBlock.length > 0 && (
+                                            <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute left-0 top-full pt-2 transition-all duration-500">
+                                                <ul className="bg-white shadow-lg rounded-md py-2 min-w-[200px]">
+                                                    {navItem.nestleLinkBlock.map((nestedItem) => (
+                                                        <li key={nestedItem._uid}>
+                                                            <Link 
+                                                                to={nestedItem.link.cached_url || "#"}
+                                                                className="block px-4 py-2 hover:text-gray-500 text-black transition-colors"
+                                                            >
+                                                                {nestedItem.title}
+                                                            </Link>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </div>
+                                        )}
+                                    </div>
                                 </li>
                             );
                         })}
