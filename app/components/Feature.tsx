@@ -11,7 +11,7 @@ type FeatureProps = {
         }
         featureButton: {
             title: string;
-            url: string;
+            cached_url: string;
         }
     }
 }
@@ -30,7 +30,7 @@ export default function Feature({ blok }: FeatureProps) {
                
 
                 <button className="relative overflow-hidden text-xs px-7 py-3 border-2 border-white text-black group bg-white hover:bg-transparent hover:text-white duration-300 ease-in-out transform scale-x-100 group-hover:scale-x-100 origin-left">
-                    <a href={blok.featureButton.url || '#'} className="relative z-10">{blok.featureButton.title || 'Click here'}</a>
+                    <a href={blok.featureButton.cached_url || '#'} className="relative z-10">{blok.featureButton.title || 'Click here'}</a>
                 </button>
                 
             </div>
