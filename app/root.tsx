@@ -27,6 +27,8 @@ import Grid from "./components/Grid";
 import Feature from "./components/Feature";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
+import SectionHeader from "./components/HeaderSection";
+
 
 
 
@@ -37,6 +39,7 @@ const components = {
   feature: Feature,
   header: Header,
   footer: Footer,
+  sectionHeader: SectionHeader,
 }
 
 storyblokInit({
