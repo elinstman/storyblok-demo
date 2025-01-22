@@ -16,12 +16,12 @@ type HeaderSectionProps = {
 export default function SectionHeader({ blok }: HeaderSectionProps) {
 
     return (
-    <section {...storyblokEditable(blok)} key={blok._uid} className="w-full relative h-[550px] overflow-hidden">
+    <section {...storyblokEditable(blok)} key={blok._uid} className="w-full relative h-[450px] overflow-hidden">
         <div className="relative w-full h-full">
             <img src={blok.background.filename} alt={blok.background.alt} className="absolute inset-0 w-full h-full object-cover object-center"/>
         </div>
         <div className="absolute inset-x-0 bottom-20 flex flex-col items-center justify-center gap-2.5">
-            <p className="text-white text-lg z-10">{blok.title}</p>
+            <p className="text-white text-2xl z-10">{blok.title}</p>
             <div
             className="text-center"
             dangerouslySetInnerHTML={{ __html: renderRichText(blok.description) ?? '' }}
