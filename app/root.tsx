@@ -29,7 +29,7 @@ import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SectionHeader from "./components/HeaderSection";
 import ProductCard from "./components/ProductCard";
-
+import DividerTextSection from "./components/dividerTextSection";
 
 
 
@@ -42,6 +42,7 @@ const components = {
   footer: Footer,
   sectionHeader: SectionHeader,
   productCard: ProductCard,
+  dividerTextSection: DividerTextSection,
 }
 
 storyblokInit({
