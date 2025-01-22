@@ -1,21 +1,37 @@
-import { StoryblokComponent, storyblokEditable } from "@storyblok/react";
+import { StoryblokComponent, storyblokEditable, renderRichText } from "@storyblok/react";
+import type { ISbRichtext } from "@storyblok/react";
+
 
 type GridProps = {
     blok: {
         _uid: string;
-        columns: any;    
+        description: ISbRichtext;
+        columns: [];    
     }
 }
 
 export default function Grid({ blok }: GridProps) {
+    const gridClass = blok.columns.length <= 3 
+        ? "grid md:grid-cols-3"
+        : "grid md:grid-cols-4";
+
     
     return (
-        <ul {...storyblokEditable(blok)} key={blok._uid} className="container mx-auto grid md:grid-cols-3 gap-12 my-12 place-items-center">
-    {blok.columns.map((blok: any) => (
-      <li key={blok._uid}>
-        <StoryblokComponent blok={blok} />
-      </li>
-    ))}
-  </ul>
+      <section >  
+      <div
+      className="text-center"
+      dangerouslySetInnerHTML={{ __html: renderRichText(blok.description) ?? '' }}
+      >
+      </div>
+      <ul {...storyblokEditable(blok)} key={blok._uid} className={gridClass}>
+         
+            {blok.columns.map((blok: any) => (
+                <li key={blok._uid} className="flex justify-center">
+                    <StoryblokComponent blok={blok} />
+                </li>
+            ))}
+        </ul>
+      </section>
+        
     )
 }
