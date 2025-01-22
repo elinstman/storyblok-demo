@@ -28,6 +28,7 @@ import Feature from "./components/Feature";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import SectionHeader from "./components/HeaderSection";
+import ProductCard from "./components/ProductCard";
 
 
 
@@ -40,6 +41,7 @@ const components = {
   header: Header,
   footer: Footer,
   sectionHeader: SectionHeader,
+  productCard: ProductCard,
 }
 
 storyblokInit({
