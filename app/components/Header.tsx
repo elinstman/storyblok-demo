@@ -49,8 +49,12 @@ export default function Header({ blok }: HeaderProps) {
                 {/* Logo section */}
                 <div className="flex items-center gap-2">
                     <Link to="/">
-                        <div className="flex items-center gap-2">
-                            <img src={blok.logo.filename} alt={blok.logo.alt || "Logo"} className="h-10" />
+                        <div className="flex flex-col items-center  gap-2">
+                            <img 
+                                src={blok.logo.filename} 
+                                alt={blok.logo.alt || "Logo"} 
+                                className="h-10 w-10 rounded-full object-cover" 
+                            />
                             <span>{blok.headerTitle}</span>
                         </div>
                     </Link>
