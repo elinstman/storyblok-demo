@@ -48,8 +48,13 @@ export default function Header({ blok }: HeaderProps) {
             <div className="container mx-auto flex flex-col items-center justify-center gap-9">
                 {/* Logo section */}
                 <div className="flex items-center gap-2">
-                    <img src={blok.logo.filename} alt={blok.logo.alt || "Logo"} className="h-10" />
-                    <span>{blok.headerTitle}</span>
+                    <Link to="/">
+                        <div className="flex items-center gap-2">
+                            <img src={blok.logo.filename} alt={blok.logo.alt || "Logo"} className="h-10" />
+                            <span>{blok.headerTitle}</span>
+                        </div>
+                    </Link>
+                    
                 </div>
                 
                 {/* Navigation */}
