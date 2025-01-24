@@ -21,16 +21,18 @@ import stylesheet from "./app.css?url";
 import { StoryblokCMS } from "./utils/cms";
 import type { ReactNode } from "react";
 import { StoryblokProvider as CustomStoryblokProvider } from "./components/storyblokProvider";
-import Page from "./components/Page";
-import Teaser from "./components/Teaser";
-import Grid from "./components/Grid";
-import Feature from "./components/Feature";
-import Header from "./components/Header";
-import Footer from "./components/Footer";
-import SectionHeader from "./components/HeaderSection";
-import ProductCard from "./components/ProductCard";
-import DividerTextSection from "./components/dividerTextSection";
-
+import Page from "./components/pages/Page";
+import Teaser from "./components/common/Teaser";
+import Grid from "./components/common/Grid";
+import Feature from "./components/common/Feature";
+import Header from "./components/globalLayout/Header";
+import Footer from "./components/globalLayout/Footer";
+import SectionHeader from "./components/common/HeaderSection";
+import ProductCard from "./components/nestable/ProductCard";
+import DividerTextSection from "./components/common/dividerTextSection";
+import Product from "./components/nestable/Product";
+import ProductImages from "./components/nestable/productImages";
+import ProductInfoWrapper from "./components/nestable/ProductInfoWrapper";
 
 
 const components = {
@@ -43,6 +45,9 @@ const components = {
   sectionHeader: SectionHeader,
   productCard: ProductCard,
   dividerTextSection: DividerTextSection,
+  product: Product,
+  productImages: ProductImages,
+  productInfoWrapper: ProductInfoWrapper,
 }
 
 storyblokInit({
