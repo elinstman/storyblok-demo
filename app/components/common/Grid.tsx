@@ -6,7 +6,7 @@ type GridProps = {
     blok: {
         _uid: string;
         description: ISbRichtext;
-        columns: [];    
+        columns: any[];    
     }
 }
 

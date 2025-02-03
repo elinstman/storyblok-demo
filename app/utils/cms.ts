@@ -17,8 +17,16 @@ export class StoryblokCMS {
     static TOKEN: string = "AINhSPX7irFQVFrjyhGXFAtt";
 
     static async sbGet(path: string, params?: Record<string, any>): Promise<any> {
-        return getStoryblokApi().get(path, params);
-      }
+        const storyblokApi = getStoryblokApi();
+        
+        try {
+            const response = await storyblokApi.get(path, params);
+            return response;
+        } catch (error) {
+            console.error('sbGet error:', error);
+            throw error;
+        }
+    }
 
     
 
@@ -52,17 +60,6 @@ export class StoryblokCMS {
       return {};
     }
   }
-
-  // static async getConfig(): Promise<Record<string, any>> {
-  //   try {
-  //     const { data } = await this.sbGet("cdn/stories/config", this.getDefaultSBParams());
-  //     console.log("CONFIG", data);
-  //     return data?.story?.content || {};
-  //   } catch (error) {
-  //     console.error("CONFIG ERROR", error);
-  //     return {}
-  //   }
-  // }
 
   static async generateMetaFromStory(slug: string): Promise<MetaData> {
 
@@ -99,6 +96,26 @@ export class StoryblokCMS {
     } catch (error) {
       console.error("PATHS ERROR", error);
       return [];
+    }
+  }
+
+  static async getStoryByUuid(uuid: string): Promise<any> {
+    try {
+        const storyQuery = {
+            by_uuids: uuid,
+            version: this.VERSION,
+        };
+
+        const { data } = await this.sbGet('cdn/stories', storyQuery);
+        // console.log('Response ELIN data:', data);
+        
+        if (data.stories && data.stories.length > 0) {
+            return data.stories[0];
+        }
+        return null;
+    } catch (error) {
+        console.error("Error fetching story by UUID:", error);
+        throw error;
     }
   }
 }
