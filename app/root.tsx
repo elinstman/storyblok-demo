@@ -30,10 +30,18 @@ import Footer from "./components/globalLayout/Footer";
 import SectionHeader from "./components/common/HeaderSection";
 import ProductCard from "./components/nestable/ProductCard";
 import DividerTextSection from "./components/common/dividerTextSection";
-import Product from "./components/nestable/Product";
+import Product from "./components/common/Product";
 import ProductImages from "./components/nestable/productImages";
 import ProductInfoWrapper from "./components/nestable/ProductInfoWrapper";
-
+import Posts from "./components/common/Posts";
+import ArticleHero from "./components/nestable/article/ArticleHero";
+import ArticleWrapper from "./components/nestable/article/ArticleWrapper";
+import ArticleContent from "./components/nestable/article/ArticleContent";
+import ImageBlock from "./components/nestable/ImageBlock";
+import ArticleText from "./components/nestable/article/ArticleText";
+import HeroNav from "./components/nestable/HeroNav";
+import ArticleFeature from "./components/nestable/article/ArticleFeature";
+import LatestBlogPost from "./components/nestable/article/LatestBlogPost";
 
 const components = {
   page: Page,
@@ -48,6 +56,15 @@ const components = {
   product: Product,
   productImages: ProductImages,
   productInfoWrapper: ProductInfoWrapper,
+  posts: Posts,
+  articleHero: ArticleHero,
+  articleWrapper: ArticleWrapper,
+  articleContent: ArticleContent,
+  imageBlock: ImageBlock,
+  articleText: ArticleText, 
+  heroNav: HeroNav,
+  articleFeature: ArticleFeature, 
+  latestBlogPost: LatestBlogPost,
 }
 
 storyblokInit({
