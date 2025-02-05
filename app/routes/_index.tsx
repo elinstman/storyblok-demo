@@ -1,4 +1,4 @@
-import type { Route } from "../../.react-router/types/app/routes/+types/_index";
+
 
 // export function meta({}: Route.MetaArgs) {
 //   return [

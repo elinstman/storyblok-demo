@@ -25,8 +25,8 @@ export default function Feature({ blok }: FeatureProps) {
             </div>
                 
                 <div className="absolute inset-x-0 bottom-20 flex flex-col items-center justify-center gap-2.5">
-                <p className="text-white z-10"> {blok.name} </p>
-                <h2 className="text-2xl text-white pb-2"> {blok.featureText} </h2>
+                <p className="text-white z-10 text-center"> {blok.name} </p>
+                <h2 className="text-2xl text-white pb-2 text-center"> {blok.featureText} </h2>
                
 
                 <button className="relative overflow-hidden text-xs px-7 py-3 border-2 border-white text-black group bg-white hover:bg-transparent hover:text-white duration-300 ease-in-out transform scale-x-100 group-hover:scale-x-100 origin-left">

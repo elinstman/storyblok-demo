@@ -17,11 +17,19 @@ export class StoryblokCMS {
     static TOKEN: string = "AINhSPX7irFQVFrjyhGXFAtt";
 
     static async sbGet(path: string, params?: Record<string, any>): Promise<any> {
-        return getStoryblokApi().get(path, params);
-      }
+        const storyblokApi = getStoryblokApi();
+        
+        try {
+            const response = await storyblokApi.get(path, params);
+            return response;
+        } catch (error) {
+            console.error('sbGet error:', error);
+            throw error;
+        }
+    }
 
     
-
+// Get story by slug
   static async getStory(params: StoryParams): Promise<any> {
     if (!params) return {};
     const uri = params?.slug?.join("/");
@@ -39,7 +47,7 @@ export class StoryblokCMS {
       cv: Date.now(),
     };
   }
-
+// Get global config, header, footer, etc.
   static async getConfig(): Promise<Record<string, any>> {
     try {
       const storyUrl = "cdn/stories/config";
@@ -52,17 +60,6 @@ export class StoryblokCMS {
       return {};
     }
   }
-
-  // static async getConfig(): Promise<Record<string, any>> {
-  //   try {
-  //     const { data } = await this.sbGet("cdn/stories/config", this.getDefaultSBParams());
-  //     console.log("CONFIG", data);
-  //     return data?.story?.content || {};
-  //   } catch (error) {
-  //     console.error("CONFIG ERROR", error);
-  //     return {}
-  //   }
-  // }
 
   static async generateMetaFromStory(slug: string): Promise<MetaData> {
 
@@ -99,6 +96,47 @@ export class StoryblokCMS {
     } catch (error) {
       console.error("PATHS ERROR", error);
       return [];
+    }
+  }
+
+  // Get story by UUID
+  static async getStoryByUuid(uuid: string): Promise<any> {
+    try {
+        const storyQuery = {
+            by_uuids: uuid,
+            version: this.VERSION,
+        };
+
+        const { data } = await this.sbGet('cdn/stories', storyQuery);
+        
+        if (data.stories && data.stories.length > 0) {
+            return data.stories[0];
+        }
+        return null;
+    } catch (error) {
+        console.error("Error fetching story by UUID:", error);
+        throw error;
+    }
+  }
+
+  static async getStories({ starts_with, sort_by, per_page }: {
+    starts_with: string;
+    sort_by: string;
+    per_page: number;
+  }): Promise<any> {
+    try {
+      const params = {
+        ...this.getDefaultSBParams(),
+        starts_with,
+        sort_by,
+        per_page,
+      };
+
+      const { data } = await this.sbGet('cdn/stories', params);
+      return data;
+    } catch (error) {
+      console.error("Error fetching stories:", error);
+      throw error;
     }
   }
 }

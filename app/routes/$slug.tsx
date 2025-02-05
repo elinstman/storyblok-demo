@@ -7,9 +7,10 @@ import {
 import { StoryblokCMS } from "~/utils/cms";
 
 export async function loader({ params }: { params: { slug?: string } }) {
-  const slug = params.slug ?? "home"; 
+  const slug = params.slug ?? "home";
 
   try {
+    // For root level stories, we just pass the slug directly
     const story = await StoryblokCMS.getStory({ slug: [slug] });
    
     if (!story) {
@@ -18,12 +19,10 @@ export async function loader({ params }: { params: { slug?: string } }) {
     
     return { story };
   } catch (error) {
-    console.error("Error fetching Storyblok data:", error);
-    throw new Response("Failed to fetch data", { status: 500 });
+    console.error(`Error fetching ${slug}:`, error);
+    throw new Response(`Failed to fetch ${slug}`, { status: 500 });
   }
 }
-
-
 
 export default function Page() {
   const { story } = useLoaderData<{ story: ISbStoryData }>();
