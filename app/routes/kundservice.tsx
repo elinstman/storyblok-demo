@@ -4,18 +4,20 @@
 // import type { LoaderFunctionArgs } from "react-router-dom";
 // import { StoryblokCMS } from "~/utils/cms";
 
-// export async function loader({ params }: LoaderFunctionArgs) {
+// export async function loader({ params }: { params: { slug?: string } }) {
+// const slug = params.slug ?? "kundservices";
 //   try {
-//     const story = await StoryblokCMS.getStory({slug: [`kundservice/${params.slug}`]});
+//     const story = await StoryblokCMS.getStory({slug: [slug]});
     
+
 //     if (!story) {
-//       throw new Response("Blog not found", { status: 404 });
+//       throw new Response("Kundservice landing page not found", { status: 404 });
 //     }
     
 //     return { story };
 //   } catch (error) {
-//     console.error("Error fetching blog:", error);
-//     throw new Response("Failed to fetch blog", { status: 500 });
+//     console.error("Error fetching kundservice:", error);
+//     throw new Response("Failed to fetch kundservice", { status: 500 });
 //   }
 // }
 

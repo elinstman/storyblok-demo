@@ -10,7 +10,6 @@ type LatestBlogPostProps = {
 };
 
 export default function LatestBlogPost({ blok }: LatestBlogPostProps) {
-  console.log('blok in latest blog post:', blok);
   return (
     <div {...storyblokEditable(blok)}>
       {/* Your latest blog post content here */}

@@ -29,7 +29,7 @@ export class StoryblokCMS {
     }
 
     
-
+// Get story by slug
   static async getStory(params: StoryParams): Promise<any> {
     if (!params) return {};
     const uri = params?.slug?.join("/");
@@ -47,7 +47,7 @@ export class StoryblokCMS {
       cv: Date.now(),
     };
   }
-
+// Get global config, header, footer, etc.
   static async getConfig(): Promise<Record<string, any>> {
     try {
       const storyUrl = "cdn/stories/config";
@@ -99,6 +99,7 @@ export class StoryblokCMS {
     }
   }
 
+  // Get story by UUID
   static async getStoryByUuid(uuid: string): Promise<any> {
     try {
         const storyQuery = {
@@ -107,7 +108,6 @@ export class StoryblokCMS {
         };
 
         const { data } = await this.sbGet('cdn/stories', storyQuery);
-        // console.log('Response ELIN data:', data);
         
         if (data.stories && data.stories.length > 0) {
             return data.stories[0];
@@ -116,6 +116,27 @@ export class StoryblokCMS {
     } catch (error) {
         console.error("Error fetching story by UUID:", error);
         throw error;
+    }
+  }
+
+  static async getStories({ starts_with, sort_by, per_page }: {
+    starts_with: string;
+    sort_by: string;
+    per_page: number;
+  }): Promise<any> {
+    try {
+      const params = {
+        ...this.getDefaultSBParams(),
+        starts_with,
+        sort_by,
+        per_page,
+      };
+
+      const { data } = await this.sbGet('cdn/stories', params);
+      return data;
+    } catch (error) {
+      console.error("Error fetching stories:", error);
+      throw error;
     }
   }
 }

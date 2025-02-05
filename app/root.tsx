@@ -42,6 +42,7 @@ import ArticleText from "./components/nestable/article/ArticleText";
 import HeroNav from "./components/nestable/HeroNav";
 import ArticleFeature from "./components/nestable/article/ArticleFeature";
 import LatestBlogPost from "./components/nestable/article/LatestBlogPost";
+import latestArticleGrid from "./components/nestable/article/LatestArticlesGrid";
 
 const components = {
   page: Page,
@@ -65,6 +66,7 @@ const components = {
   heroNav: HeroNav,
   articleFeature: ArticleFeature, 
   latestBlogPost: LatestBlogPost,
+  latestArticleGrid: latestArticleGrid,
 }
 
 storyblokInit({
