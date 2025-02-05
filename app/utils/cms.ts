@@ -31,15 +31,28 @@ export class StoryblokCMS {
     
 // Get story by slug
   static async getStory(params: StoryParams): Promise<any> {
-    if (!params) return {};
-    const uri = params?.slug?.join("/");
+    if (!params.slug) return {};
+    
+    // Don't join the slug if it's already a string
+    const uri = typeof params.slug === 'string' 
+      ? params.slug 
+      : params.slug.join("/");
+      
     const storyUrl = "cdn/stories/" + uri;
+    console.log('Requesting Storyblok URL:', storyUrl);
+    console.log('With params:', params);
 
-
-    const defaultParams = this.getDefaultSBParams();  
-    const { data } = await this.sbGet(storyUrl, defaultParams);
-    return data.story;
+    try {
+      const defaultParams = this.getDefaultSBParams();  
+      const { data } = await this.sbGet(storyUrl, defaultParams);
+      return data.story;
+    } catch (error) {
+      console.error('getStory error:', error);
+      console.error('Failed URL:', storyUrl);
+      throw error;
+    }
   }
+  
   static getDefaultSBParams(): Record<string, any> {
     return {
       version: this.VERSION,
