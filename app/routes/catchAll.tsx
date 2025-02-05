@@ -5,28 +5,35 @@ import type { LoaderFunctionArgs } from "react-router-dom";
 import { StoryblokCMS } from "~/utils/cms";
 
 export async function loader({ params }: LoaderFunctionArgs) {
+  console.log('TestPage loader called with params:', params);
+  
   try {
-    const story = await StoryblokCMS.getStory({slug: [`kundservice/blog/${params.slug}`]});
-    
+    const story = await StoryblokCMS.getStory({ slug: [`/${params["*"]}`] });
+
+      
     if (!story) {
-      throw new Response("Blog not found", { status: 404 });
+      throw new Response("test not found", { status: 404 });
     }
     
     return { story };
   } catch (error) {
-    console.error("Error fetching blog:", error);
-    throw new Response("Failed to fetch blog", { status: 500 });
+    console.error("Error fetching test:", error);
+    throw new Response("Failed to fetch test", { status: 500 });
   }
 }
 
-export default function BlogPage() {
+
+export default function TestPage() {
+  console.log('TestPage component rendering');
   const { story } = useLoaderData<typeof loader>();
   const storyblok = useStoryblok();
   const liveStory = useStoryblokState(story);
 
+
   if (!liveStory) {
-    return <div>404: Blog not found</div>;
+    return <div>404: Test not found</div>;
   }
+
 
   return (
     <main>

@@ -30,7 +30,7 @@ import Footer from "./components/globalLayout/Footer";
 import SectionHeader from "./components/common/HeaderSection";
 import ProductCard from "./components/nestable/ProductCard";
 import DividerTextSection from "./components/common/dividerTextSection";
-import Product from "./components/common/Product";
+import Product from "./components/pages/Product";
 import ProductImages from "./components/nestable/productImages";
 import ProductInfoWrapper from "./components/nestable/ProductInfoWrapper";
 import Posts from "./components/common/Posts";

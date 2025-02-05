@@ -7,11 +7,13 @@ import {
 import { StoryblokCMS } from "~/utils/cms";
 
 export async function loader({ params }: { params: { slug?: string } }) {
+  console.log('Loader in $slug.tsx called with params:', params);
   const slug = params.slug ?? "home";
 
   try {
-    // For root level stories, we just pass the slug directly
-    const story = await StoryblokCMS.getStory({ slug: [slug] });
+    const story = await StoryblokCMS.getStory({ 
+      slug: [slug]  // Pass as array to match the type
+    });
    
     if (!story) {
       throw new Response("Story not found", { status: 404 });
