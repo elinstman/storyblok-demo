@@ -30,7 +30,7 @@ import Footer from "./components/globalLayout/Footer";
 import SectionHeader from "./components/common/HeaderSection";
 import ProductCard from "./components/nestable/ProductCard";
 import DividerTextSection from "./components/common/dividerTextSection";
-import Product from "./components/common/Product";
+import Product from "./components/pages/Product";
 import ProductImages from "./components/nestable/productImages";
 import ProductInfoWrapper from "./components/nestable/ProductInfoWrapper";
 import Posts from "./components/common/Posts";
@@ -43,6 +43,7 @@ import HeroNav from "./components/nestable/HeroNav";
 import ArticleFeature from "./components/nestable/article/ArticleFeature";
 import LatestBlogPost from "./components/nestable/article/LatestBlogPost";
 import latestArticleGrid from "./components/nestable/article/LatestArticlesGrid";
+import NewsPage from "./components/pages/NewsPage";
 
 const components = {
   page: Page,
@@ -67,6 +68,7 @@ const components = {
   articleFeature: ArticleFeature, 
   latestBlogPost: LatestBlogPost,
   latestArticleGrid: latestArticleGrid,
+  newsPage: NewsPage,
 }
 
 storyblokInit({
