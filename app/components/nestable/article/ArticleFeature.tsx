@@ -17,6 +17,7 @@ type StoryData = {
     postBlock: PostBlock[];
   };
   name: string;
+  slug: string;  
 };
 
 type PostBlock = {
@@ -53,12 +54,15 @@ export default async function ArticleFeature({ blok }: ArticleFeatureProps) {
   const articleWrapper = storyData.content.postBlock?.find(
     block => block.component === 'articleWrapper'
   );
+
+  const articleSlug = storyData.slug;
+  console.log('articleSlug:', articleSlug);
   
   const articleTitle = articleWrapper?.article?.[0]?.title;
-  console.log('articleTitle:', articleTitle);
+ 
 
   const articleContent = articleWrapper?.article?.[0]?.content;
-  // console.log('articleContent:', articleContent);
+  // console.log('articleContent:', articleContent);  
   const firstImage = articleContent?.find(block => block.component === 'imageBlock');
 
 
@@ -78,9 +82,10 @@ export default async function ArticleFeature({ blok }: ArticleFeatureProps) {
             {articleTitle}
           </h2>
           <button className="w-fit overflow-hidden text-xs px-4 py-1 border-2 border-white text-black group bg-white hover:bg-transparent hover:text-white duration-300 ease-in-out transform scale-x-100 group-hover:scale-x-100 origin-left">
-            <a href={`/kundservice/blog/${articleTitle}`}>
+              <a href={`/kundservice/blog/${articleSlug.split('/').pop()}`}>
               Läs mer
             </a>
+            
           </button>
         </div>
       </div>
