@@ -1,3 +1,5 @@
+import { storyblokEditable } from '@storyblok/react';
+
 type FooterProps = {
     blok: {
         _uid: string;
@@ -38,7 +40,14 @@ export default function Footer({ blok }: FooterProps) {
                         ))}
                     </form>
                     <button 
+                    {...storyblokEditable(blok)}
                     className="absolute top-3/4 right-0 transform -translate-y-1/2 mt-2 mr-2 px-4 py-2 text-black font-semibold transition-transform duration-300 text-sm hover:text-base"
+                    onClick={(e) => {
+                        e.preventDefault();
+                        console.log('Button clicked!');
+                        console.log('Navigation Success Button:', blok.formwrapper[0].navigationSuccessButton);
+                        console.log('Navigation Success URL:', blok.formwrapper[0].navigationSuccess.cached_url);
+                    }}
                     > {blok.formwrapper[0].navigationSuccessButton}</button>
                 </div>
                 {/* footer nav div */}
