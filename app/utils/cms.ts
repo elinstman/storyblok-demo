@@ -39,8 +39,8 @@ export class StoryblokCMS {
       : params.slug.join("/");
       
     const storyUrl = "cdn/stories/" + uri;
-    console.log('Requesting Storyblok URL:', storyUrl);
-    console.log('With params:', params);
+    // console.log('Requesting Storyblok URL:', storyUrl);
+    // console.log('With params:', params);
 
     try {
       const defaultParams = this.getDefaultSBParams();  

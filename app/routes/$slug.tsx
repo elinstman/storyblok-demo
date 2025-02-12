@@ -1,4 +1,4 @@
-import { useLoaderData, useRouteLoaderData } from "react-router-dom";
+import { useLoaderData, useRouteLoaderData } from "react-router";
 import {
   StoryblokComponent,
   type ISbStoryData,

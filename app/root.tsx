@@ -11,7 +11,7 @@ import {
   createRoutesFromElements,
   Route as RouteComponent,
   useLoaderData
-} from "react-router-dom";
+} from "react-router";
 
 
 
@@ -27,13 +27,13 @@ import Grid from "./components/common/Grid";
 import Feature from "./components/common/Feature";
 import Header from "./components/globalLayout/Header";
 import Footer from "./components/globalLayout/Footer";
-import SectionHeader from "./components/common/HeaderSection";
-import ProductCard from "./components/nestable/ProductCard";
+// import SectionHeader from "./components/common/HeaderSection";
+import ProductCard from "./components/nestable/productPage/ProductCard";
 import DividerTextSection from "./components/common/dividerTextSection";
 import Product from "./components/pages/Product";
-import ProductImages from "./components/nestable/productImages";
-import ProductInfoWrapper from "./components/nestable/ProductInfoWrapper";
-import Posts from "./components/common/Posts";
+import ProductImages from "./components/nestable/productPage/productImages";
+import ProductInfoWrapper from "./components/nestable/productPage/ProductInfoWrapper";
+import Posts from "./components/pages/Posts";
 import ArticleHero from "./components/nestable/article/ArticleHero";
 import ArticleWrapper from "./components/nestable/article/ArticleWrapper";
 import ArticleContent from "./components/nestable/article/ArticleContent";
@@ -44,6 +44,7 @@ import ArticleFeature from "./components/nestable/article/ArticleFeature";
 import LatestBlogPost from "./components/nestable/article/LatestBlogPost";
 import latestArticleGrid from "./components/nestable/article/LatestArticlesGrid";
 import NewsPage from "./components/pages/NewsPage";
+import LinkBlock from "./components/common/LinkBlock";
 
 const components = {
   page: Page,
@@ -52,7 +53,7 @@ const components = {
   feature: Feature,
   header: Header,
   footer: Footer,
-  sectionHeader: SectionHeader,
+  // sectionHeader: SectionHeader,
   productCard: ProductCard,
   dividerTextSection: DividerTextSection,
   product: Product,
@@ -69,6 +70,7 @@ const components = {
   latestBlogPost: LatestBlogPost,
   latestArticleGrid: latestArticleGrid,
   newsPage: NewsPage,
+  linkBlock: LinkBlock,
 }
 
 storyblokInit({

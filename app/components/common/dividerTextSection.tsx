@@ -1,6 +1,6 @@
 import type { ISbRichtext } from "@storyblok/react";
 import { renderRichText } from "@storyblok/react";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 
 const schema = {
     resolver: (component: string, data: any) => {

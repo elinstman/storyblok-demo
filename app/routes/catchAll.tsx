@@ -1,7 +1,7 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData } from "react-router";
 import { StoryblokComponent, useStoryblokState } from "@storyblok/react";
 import { useStoryblok } from "~/components/storyblokProvider";
-import type { LoaderFunctionArgs } from "react-router-dom";
+import type { LoaderFunctionArgs } from "react-router";
 import { StoryblokCMS } from "~/utils/cms";
 
 export async function loader({ params }: LoaderFunctionArgs) {

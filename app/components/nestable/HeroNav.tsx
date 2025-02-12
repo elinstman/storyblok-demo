@@ -1,4 +1,8 @@
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
+import { useState } from 'react';
+import { useFetcher } from "react-router";
+import { storyblokEditable } from "@storyblok/react";
+import Button from "./button";
 
 type HeroNavProps = {
     blok: {
@@ -19,56 +23,55 @@ type HeroNavProps = {
             }>
         }>
     };
+    onCategoryChange: (category: string) => void;
 }
 
 export default function HeroNav({ blok }: HeroNavProps) {
+    const fetcher = useFetcher();
     
     return (
-        <div className="bg-white pt-12">
-            <div className="container mx-auto flex flex-col items-center justify-center gap-6">
-                {/* Title section */}
-                <div className="flex items-center">
-                    <h2 className="text-2xl font-thin">{blok.heroNavTitle}</h2>
-                </div>
+
+        <button onClick={() => {
+            console.log('hej');
+            alert('Button clicked!');
+        }}
+        className="bg-blue-600 text-white hover:bg-blue-700 rounded-md px-4 py-2">Test halloj</button>
+
+        // <div className="bg-white pt-12">
+        //     <div className="container mx-auto flex flex-col items-center justify-center gap-6">
+        //         {/* Title section */}
+        //         <div className="flex items-center">
+        //             <h2 className="text-2xl font-thin">{blok.heroNavTitle}</h2>
+        //         </div>
                 
-                {/* Navigation */}
-                <nav className="w-full">
-                    <ul className="flex justify-center gap-8 flex-wrap">
-                        {blok.heroNavLinks.map((navItem) => (
-                            <li 
-                                key={navItem._uid}
-                                className="relative group"
-                            >
-                                <div className="h-full hover:text-gray-500">
-                                    <Link 
-                                        to={navItem.link.cached_url || "#"}
-                                        className="block px-4 py-2 transition-colors text-sm"
-                                    >
-                                        {navItem.title}
-                                    </Link>
-                                    
-                                    {navItem.nestleLinkBlock && navItem.nestleLinkBlock.length > 0 && (
-                                        <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 absolute left-0 top-full pt-2 transition-all duration-500">
-                                            <ul className="bg-white shadow-lg rounded-md py-2 min-w-[200px]">
-                                                {navItem.nestleLinkBlock.map((nestedItem) => (
-                                                    <li key={nestedItem._uid}>
-                                                        <Link 
-                                                            to={nestedItem.link.cached_url || "#"}
-                                                            className="block px-4 py-2 hover:text-gray-500 text-black transition-colors"
-                                                        >
-                                                            {nestedItem.title}
-                                                        </Link>
-                                                    </li>
-                                                ))}
-                                            </ul>
-                                        </div>
-                                    )}
-                                </div>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-            </div>
-        </div>
+        //         {/* Navigation */}
+        //         <nav className="w-full">
+        //             <ul className="flex justify-center gap-8 flex-wrap">
+        //                 {blok.heroNavLinks.map((navItem) => {
+        //                     return (
+        //                         <li 
+        //                             key={navItem._uid}
+        //                             className="relative group cursor-pointer"
+        //                         >
+        //                             <div className="h-full hover:text-gray-500"                               
+        //                        >
+        //                            <button 
+        //                                className="block px-4 py-2 transition-colors text-sm z-10"
+        //                                onClick={()=>{
+        //                                    console.log('link clicked');
+        //                                }}
+        //                            >
+        //                                {navItem.title}
+        //                            </button>
+                        
+                                   
+        //                        </div>
+        //                         </li>
+        //                     );
+        //                 })}
+        //             </ul>
+        //         </nav>
+        //     </div>
+        // </div>
     );
 }

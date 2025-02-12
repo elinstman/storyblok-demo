@@ -1,4 +1,5 @@
 import { StoryblokComponent } from "@storyblok/react";
+import { Link } from "react-router";
 
 type ArticleContentProps = {
     blok: {
@@ -10,7 +11,7 @@ type ArticleContentProps = {
 }
 
 export default function ArticleContent({ blok, story }: ArticleContentProps) {
-    console.log("first_published_at in article content", story.first_published_at);
+ 
     const formattedDate = story?.first_published_at 
         ? new Date(story.first_published_at).toLocaleDateString('sv-SE')
         : null;
@@ -24,6 +25,12 @@ export default function ArticleContent({ blok, story }: ArticleContentProps) {
                     key={nestedBlok._uid}
                 />
             ))}
+            <div className="flex justify-between items-center">
+                <Link to="/"
+                 className="text-font-thin text-sm hover:text-gray-500">   
+                   Back to articles
+                </Link>
+            </div>
             {formattedDate && (
                 <div className="text-gray-500 text-sm mt-8 pt-4">
                     Publicerad: {formattedDate}
