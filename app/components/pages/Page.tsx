@@ -5,14 +5,19 @@ type PageProps = {
     _uid: string;
     body: any[];
   };
+  story?: any;
 };
 
-const Page = ({ blok }: PageProps) => {
-
+const Page = ({ blok, story }: PageProps) => {
+ 
   return (
     <main {...storyblokEditable(blok)} key={blok._uid} >
     {blok.body.map((nestedBlok) => (
-      <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+      <StoryblokComponent 
+        blok={nestedBlok}
+        key={nestedBlok._uid}
+        story={story}
+      />
     ))}
   </main>
   )

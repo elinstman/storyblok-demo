@@ -36,7 +36,7 @@ export default function Page() {
   
   return (
     <main>
-      <StoryblokComponent blok={liveStory.content} />
+      <StoryblokComponent blok={liveStory.content} story={liveStory}  />
     </main>
   );
 }
