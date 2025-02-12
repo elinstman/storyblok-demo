@@ -27,7 +27,7 @@ import Grid from "./components/common/Grid";
 import Feature from "./components/common/Feature";
 import Header from "./components/globalLayout/Header";
 import Footer from "./components/globalLayout/Footer";
-// import SectionHeader from "./components/common/HeaderSection";
+import SectionHeader from "./components/common/HeaderSection";
 import ProductCard from "./components/nestable/productPage/ProductCard";
 import DividerTextSection from "./components/common/dividerTextSection";
 import Product from "./components/pages/Product";
@@ -53,7 +53,7 @@ const components = {
   feature: Feature,
   header: Header,
   footer: Footer,
-  // sectionHeader: SectionHeader,
+  sectionHeader: SectionHeader,
   productCard: ProductCard,
   dividerTextSection: DividerTextSection,
   product: Product,
