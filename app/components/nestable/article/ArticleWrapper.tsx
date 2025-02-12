@@ -5,13 +5,13 @@ type ArticleWrapperProps = {
     blok: {
         _uid: string;
         background: string;
-        article: any[]
-
-    }
+        category: string[];
+        article: any[];
+    };
+    story?: any;
 }
 
-export default function ArticleWrapper({ blok }: ArticleWrapperProps) {
-
+export default function ArticleWrapper({ blok, story }: ArticleWrapperProps) {
     return (
         <section 
             {...storyblokEditable(blok)} 
@@ -21,13 +21,14 @@ export default function ArticleWrapper({ blok }: ArticleWrapperProps) {
         >
             <div className="container mx-auto px-4 transform -translate-y-32">
                {blok.article.map((nestedBlok) => (
-                <StoryblokComponent blok={nestedBlok} key={nestedBlok._uid} />
+                <StoryblokComponent 
+                    blok={nestedBlok}
+                    key={nestedBlok._uid}
+                    story={story}
+                />
                ))}
-
             </div>  
         </section>
-
-
     )
 }
     

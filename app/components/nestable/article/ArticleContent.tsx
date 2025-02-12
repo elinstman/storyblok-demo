@@ -5,13 +5,14 @@ type ArticleContentProps = {
         _uid: string;
         title: string;
         content: any[];
-        first_published_at?: string;
-    }
+    };
+    story?: any;
 }
 
-export default function ArticleContent({ blok }: ArticleContentProps) {
-    const formattedDate = blok.first_published_at 
-        ? new Date(blok.first_published_at).toLocaleDateString('sv-SE')
+export default function ArticleContent({ blok, story }: ArticleContentProps) {
+    console.log("first_published_at in article content", story.first_published_at);
+    const formattedDate = story?.first_published_at 
+        ? new Date(story.first_published_at).toLocaleDateString('sv-SE')
         : null;
 
     return (
@@ -24,7 +25,7 @@ export default function ArticleContent({ blok }: ArticleContentProps) {
                 />
             ))}
             {formattedDate && (
-                <div className="text-gray-500 text-sm mt-8 pt-4 border-t">
+                <div className="text-gray-500 text-sm mt-8 pt-4">
                     Publicerad: {formattedDate}
                 </div>
             )}
